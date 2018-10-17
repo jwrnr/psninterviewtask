@@ -14,6 +14,32 @@ $channelIdGMBN = "UC_A--fhX5gea0i4UtpD99Gg"; // Global Mountain Bike Network
 
 if ($filecontents) {
 
+    // Set up the database connection
+    $connection = mysqli_connect('localhost','devuser','fnord12345','mydb');
+    if ($connection->connect_errno) {
+        error_log("Database connection failed: %s\n", $connection->connect_error);
+        exit();
+    }
+    mysqli_set_charset($connection, "ISO-8859-1"); // In order to handle exotic characters in titles
+
+    // Clear the video table
+    $deleteQuery = "DELETE FROM videos";
+    if ($result = $connection->query($deleteQuery)) {
+       echo "Cleared the 'video' database table\n";
+    } else {
+       error_log("Video database table clearing failed\n");
+    }
+
+    // Clear the channel table
+    $deleteQuery = "DELETE FROM channels";
+    if ($result = $connection->query($deleteQuery)) {
+       echo "Cleared the 'channel' database table\n";
+    } else {
+       error_log("Channel database table clearing failed\n");
+    }
+
+    echo "\n";
+
     // Iterate line by line
     foreach ($queries as $query) {
 
