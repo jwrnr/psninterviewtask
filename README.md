@@ -22,15 +22,20 @@ This endpoint comprises the list (GET), search (GET with ID) and delete (DELETE)
 
 Apart from the source files, there is a working implementation running in an Amazon Web Services EC2 instance which is available here:
 
-* http://dev.jwrnr.co/api/store_by_filter.php
-* http://dev.jwrnr.co/api/videos.php
-* http://dev.jwrnr.co/api/videos.php?id=1981227674
+* (GET) http://dev.jwrnr.co/api/store_by_filter.php
+* (GET) http://dev.jwrnr.co/api/videos.php
+* (GET) http://dev.jwrnr.co/api/videos.php?id=1981227674
 
-## Known issues
+The DELETE functionality is best demonstrated using an inspection tool such as Postman.
+
+## Known issues - discussion points
 
 * The .htaccess RewriteRules engine should be used to hide the .php part of the URL to adhere to the noun-only terminology of REST.
 * The endpoints should ideally be secured under HTTPS.
 * The endpoint HTTP response codes should be handled in more detail.
 * The database structure could be enhanced with AUTO_INCREMENT on the primary key, making the title field longer and creating a link back to the channels table for each video.
-
-
+* The charset is currently set to ISO-8859-1 to deal with complicated characters but should be UTF-8 in a final implementation.
+* The datetime format returned by the videos API endpoint should be converted back to standard Javascript datetime format.
+* The MySQL connection calls in the PHP source code expose the password in clear text.
+* The source code could certainly be refactored in a multitude of ways. :-)
+* The solution could be simplfied by using a framework such as Laravel.
