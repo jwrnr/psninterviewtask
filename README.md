@@ -1,5 +1,7 @@
 # Play Sports Network interview task
 
+Jan Warner
+
 ## Introduction
 
 The solution is based on PHP, MySQL, Apache and uses two external packages imported via Composer - Google Services and GuzzleHttp.
